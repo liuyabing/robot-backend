@@ -208,7 +208,7 @@ public class LoginController {
 	 * @return
 	 */
 	@PostMapping(value = "/sms")
-	@ApiOperation(value = "短信验证码接口", notes = "注册登陆或忘记密码时需要用到短信接口")
+	@ApiOperation(value = "短信验证码接口", notes = "mobile-string-手机号, smsmode-string-短信模板方式  0 .登录模板、1.注册模板、2.忘记密码模板")
 	public Result<String> sms(@RequestBody JSONObject jsonObject) {
 		Result<String> result = new Result<String>();
 		String mobile = jsonObject.get("mobile").toString();
@@ -280,7 +280,7 @@ public class LoginController {
 	 * @return
 	 */
 	@PostMapping("/phoneLogin")
-	@ApiOperation(value="手机号登录接口",notes="通过手机号和验证码登录")
+	@ApiOperation(value="手机号登录接口",notes="mobile-string-手机号, captcha-string-验证码")
 	public Result<JSONObject> phoneLogin(@RequestBody JSONObject jsonObject) {
 		Result<JSONObject> result = new Result<JSONObject>();
 		String phone = jsonObject.getString("mobile");

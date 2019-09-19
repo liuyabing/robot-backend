@@ -287,7 +287,7 @@ public class SysUserController {
      * @param sysUser
      * @return
      */
-    @ApiOperation(value="用户名唯一检查", notes="检查用户名是否唯一")
+    @ApiOperation(value="用户名唯一检查", notes="username-string-用户名")
     @RequestMapping(value = "/checkOnlyUser", method = RequestMethod.GET)
     public Result<Boolean> checkOnlyUser(SysUser sysUser) {
         Result<Boolean> result = new Result<>();
@@ -315,7 +315,7 @@ public class SysUserController {
      * 修改密码
      */
     @RequestMapping(value = "/changPassword", method = RequestMethod.PUT)
-    @ApiOperation(value = "修改密码")
+    @ApiOperation(value = "修改密码", notes="id-string-用户名,password-string-密码")
     public Result<SysUser> changPassword(@RequestBody SysUser sysUser) {
         Result<SysUser> result = new Result<SysUser>();
         String password = sysUser.getPassword();
@@ -335,7 +335,7 @@ public class SysUserController {
     }
     
     @RequestMapping(value = "/changAvatar", method = RequestMethod.PUT)
-    @ApiOperation(value = "根据用户名修改头像路径")
+    @ApiOperation(value = "根据用户名修改头像路径", notes="id-string-用户名,avatar-string-头像地址")
     public Result<SysUser> changAvatar(@RequestBody SysUser sysUser) {
         Result<SysUser> result = new Result<SysUser>();
         sysUser = this.sysUserService.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, sysUser.getUsername()));
@@ -757,7 +757,7 @@ public class SysUserController {
 	 * @param user
 	 * @return
 	 */
-    @ApiOperation(value="注册接口", notes="用户注册接口")
+    @ApiOperation(value="注册接口", notes="phone-手机号，smscode-验证码，username-用户名，password-密码")
 	@PostMapping("/register")
 	public Result<JSONObject> userRegister(@RequestBody JSONObject jsonObject, SysUser user) {
 		Result<JSONObject> result = new Result<JSONObject>();
